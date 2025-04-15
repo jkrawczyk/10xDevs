@@ -1,0 +1,45 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# AI Rules for Next.js Project
+
+This document contains guidelines for introducing changes and improvements to the project. The project is built with Next.js using the App Router, TypeScript for static type checking, Tailwind CSS for styling, and is organized inside a `src` folder.
+
+## Tech Stack
+
+- Next.js 15 (with App Router)
+- TypeScript 5
+- React 19
+- Tailwind CSS 4
+
+## Project Structure
+
+When introducing changes to the project, please adhere to the directory structure outlined below:
+
+- `./src` – All source code for the project.
+- `./src/app` – Application routes using Next.js App Router. This directory contains special files like `layout.tsx`, `page.tsx`, `loading.tsx`, and `error.tsx` that follow Next.js conventions.
+- `./src/app/api` – API routes implemented with Next.js route handlers.
+- `./src/components` – Reusable React components.
+- `./src/lib` – Utility functions and services.
+- `./src/styles` – Global styles and Tailwind CSS configurations.
+- `./src/types` – Shared TypeScript definitions (interfaces, DTOs, etc.).
+- `./public` – Public assets such as images, favicons, and other static files.
+
+Always update this section if you modify the overall directory structure.
+
+## Coding Practices
+
+### Guidelines for Clean Code
+
+- Follow ESLint and TypeScript rules to ensure high code quality and maintainability.
+- Adhere to Next.js App Router conventions by properly separating server components from client components (using the `use client` directive where appropriate) and by maintaining prescribed file naming (e.g., `layout.tsx`, `page.tsx`).
+- Incorporate feedback from linters and code reviews to continuously improve the code.
+- Prioritize error handling by performing early returns and using guard clauses to reduce deeply nested conditions.
+- Maintain clear separation of concerns between UI logic and data handling.
+- Refactor repetitive code into reusable components or helper functions.
+- Ensure that any changes, especially structural modifications, are reflected accurately in both documentation and tests.
+- Write clear, descriptive commit messages and in-line comments where necessary.
+
+Adhere to these guidelines to maintain a consistent, efficient, and scalable codebase.
