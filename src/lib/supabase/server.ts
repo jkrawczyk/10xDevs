@@ -27,3 +27,5 @@ export async function createClient() {
     }
   )
 }
+
+export const DEFAULT_USER_ID = '02f4aa69-4606-4156-9075-6df58896461e'
