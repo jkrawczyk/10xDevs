@@ -1,6 +1,6 @@
 ---
-description:
-globs:
+description: 
+globs: 
 alwaysApply: true
 ---
 # AI Rules for Next.js Project
@@ -13,6 +13,7 @@ This document contains guidelines for introducing changes and improvements to th
 - TypeScript 5
 - React 19
 - Tailwind CSS 4
+- Shadcn/ui
 
 ## Project Structure
 
