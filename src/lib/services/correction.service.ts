@@ -1,4 +1,5 @@
-import { GenerateCorrectionProposalCommand, GenerateCorrectionProposalResponseDTO } from '@/types';
+import { createClient } from '@/lib/supabase/server';
+import { GenerateCorrectionProposalCommand, GenerateCorrectionProposalResponseDTO, CorrectionDTO } from '@/types';
 
 export class CorrectionService {
   static async generateCorrectionProposal(
@@ -21,6 +22,36 @@ export class CorrectionService {
     } catch (error) {
       console.error('Error in correction service:', error);
       throw new Error('Failed to generate correction proposal');
+    }
+  }
+
+  static async saveCorrection(
+    originalText: string,
+    approvedText: string,
+    correctionStyle: CorrectionDTO['correction_style'],
+    userId: string
+  ): Promise<CorrectionDTO> {
+    try {
+      const supabase = await createClient();
+      
+      const { data, error } = await supabase
+        .from('corrections')
+        .insert({
+          user_id: userId,
+          original_text: originalText,
+          approved_text: approvedText,
+          correction_style: correctionStyle,
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+      if (!data) throw new Error('No data returned from insert');
+
+      return data as CorrectionDTO;
+    } catch (error) {
+      console.error('Error saving correction:', error);
+      throw new Error('Failed to save correction');
     }
   }
 } 
