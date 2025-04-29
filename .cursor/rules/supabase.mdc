@@ -1,12 +1,13 @@
 ---
 description: 
-globs: src/db/*.ts,src/middleware/*.ts,src/lib/*.ts
-alwaysApply: false
+globs: 
+alwaysApply: true
 ---
 ### Backend and Database
 
 - Use Supabase for backend services, including authentication and database interactions.
 - Follow Supabase guidelines for security and performance.
 - Use Zod schemas to validate data exchanged with the backend.
-
 - Use SupabaseClient type from `src/lib/supabase/server.ts`, not from `@supabase/supabase-js`
+- The auth-helpers are now deprecated, don't use it. Also don't use directly `@supabase/ssr` but instead use `src/lib/supabase/middleware.ts` what uses `@supabase/ssr`
+- For supabase clients use `src/lib/supabase/client.ts` on client side and `src/lib/supabase/server.ts` on server side
