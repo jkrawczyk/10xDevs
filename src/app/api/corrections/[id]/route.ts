@@ -4,9 +4,18 @@ import { DeleteCorrectionResponseDTO } from '@/types';
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
+    // Get and validate the ID parameter
+    const { id } = await context.params;
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Missing correction ID' },
+        { status: 400 }
+      );
+    }
+
     // Initialize Supabase client using our helper
     const supabase = await createClient();
 
@@ -23,7 +32,7 @@ export async function DELETE(
     const { data: correction, error: fetchError } = await supabase
       .from('corrections')
       .select('id')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('user_id', user.id)
       .single();
 
@@ -38,7 +47,7 @@ export async function DELETE(
     const { error: deleteError } = await supabase
       .from('corrections')
       .delete()
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('user_id', user.id);
 
     if (deleteError) {
