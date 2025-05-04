@@ -26,7 +26,7 @@ export function UserNav() {
       ) : (
         <Link href="/login">
           <Button variant="outline" size="sm">
-            Login
+            Sign in
           </Button>
         </Link>
       )}

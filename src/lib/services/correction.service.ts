@@ -35,7 +35,7 @@ export class CorrectionService {
       
       // Construct the prompt based on correction style and context
       const promptParts = [
-        'As a language correction assistant, please correct the following text.',
+        'As a language correction assistant, please correct into English the following text, it can be in Polish or English, other languages are not allowed.',
         `Style: ${correctionStyle}`,
         `Original text: "${originalText}"`
       ];
@@ -53,7 +53,7 @@ export class CorrectionService {
         'Provide your response in the following JSON format:',
         '{',
         '  "proposed_text": "your corrected version",',
-        '  "educational_comment": "your explanation of the changes"',
+        '  "educational_comment": "your explanation of the changes in Polish"',
         '}'
       );
 

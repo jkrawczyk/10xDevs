@@ -58,7 +58,7 @@ export function CorrectionListItem({ correction, onDelete }: CorrectionListItemP
         </div>
         <div>
           <div className="text-sm font-medium mb-1">Corrected text:</div>
-          <div className="text-sm bg-muted p-3 rounded-md">
+          <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md">
             {correction.approved_text}
           </div>
         </div>
