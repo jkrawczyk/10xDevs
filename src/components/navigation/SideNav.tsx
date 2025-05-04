@@ -23,9 +23,6 @@ export function SideNav() {
 
   return (
     <nav className="flex flex-col gap-1 p-4 min-w-52 border-r">
-      <div className="mb-4 px-2">
-        <h2 className="text-lg font-semibold">Text Correction</h2>
-      </div>
       {navigation.map((item) => {
         const isActive = pathname === item.href
         return (

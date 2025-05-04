@@ -1,38 +1,51 @@
-import { login, signup } from './actions'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import Link from 'next/link'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { LoginForm } from '@/components/auth/LoginForm'
+import { Alert } from "@/components/ui/alert"
 
-export default function LoginPage() {
+export const metadata = {
+  title: 'Logowanie',
+  description: 'Zaloguj się do swojego konta',
+}
+
+interface LoginPageProps {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default function LoginPage({ searchParams }: LoginPageProps) {
+  const message = searchParams.message as string | undefined
+
   return (
-    <Card className="w-[400px] mx-4">
-      <CardHeader>
-        <CardTitle>Text Correction</CardTitle>
-        <CardDescription>
-          Zaloguj się lub zarejestruj, aby korzystać z aplikacji
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Hasło</Label>
-            <Input id="password" name="password" type="password" required />
-          </div>
-          <div className="flex gap-4 pt-2">
-            <Button formAction={login} className="flex-1">
-              Zaloguj się
-            </Button>
-            <Button formAction={signup} variant="outline" className="flex-1">
+    <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-2xl">Logowanie</CardTitle>
+          <CardDescription>
+            Zaloguj się do swojego konta aby kontynuować
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {message && (
+            <Alert className="mb-4">
+              {message}
+            </Alert>
+          )}
+          <LoginForm />
+        </CardContent>
+        <CardFooter className="flex flex-col space-y-4">
+          <div className="text-sm text-muted-foreground">
+            Nie masz jeszcze konta?{' '}
+            <Link href="/register" className="text-primary hover:underline">
               Zarejestruj się
-            </Button>
+            </Link>
           </div>
-        </form>
-      </CardContent>
-    </Card>
+          <div className="text-sm text-muted-foreground">
+            <Link href="/forgot-password" className="text-primary hover:underline">
+              Zapomniałeś hasła?
+            </Link>
+          </div>
+        </CardFooter>
+      </Card>
+    </div>
   )
 }

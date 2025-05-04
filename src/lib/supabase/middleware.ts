@@ -1,5 +1,20 @@
+'use server'
+
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+
+// Lista publicznych ścieżek, które nie wymagają autentykacji
+const publicPaths = [
+  '/login',
+  '/register',
+  '/forgot-password',
+  '/reset-password',
+  '/auth/confirm'
+]
+
+function isPublicPath(path: string) {
+  return publicPaths.some(publicPath => path.startsWith(publicPath))
+}
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -37,14 +52,18 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/login') &&
-    !request.nextUrl.pathname.startsWith('/auth')
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
+  // Sprawdź, czy użytkownik próbuje dostać się do chronionej ścieżki
+  if (!user && !isPublicPath(request.nextUrl.pathname)) {
+    // Przekieruj do logowania tylko jeśli to nie jest publiczna ścieżka
     const url = request.nextUrl.clone()
     url.pathname = '/login'
+    return NextResponse.redirect(url)
+  }
+
+  // Jeśli użytkownik jest zalogowany i próbuje dostać się do stron auth, przekieruj do strony głównej
+  if (user && isPublicPath(request.nextUrl.pathname)) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/'
     return NextResponse.redirect(url)
   }
 
