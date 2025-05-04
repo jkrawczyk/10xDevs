@@ -14,6 +14,7 @@ interface ResultsSectionProps {
 export function ResultsSection({ correctionData }: ResultsSectionProps) {
   const { originalText, proposedText, educationalComment, correctionStyle } = correctionData;
   const [isSaving, setIsSaving] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const handleCopy = async (text: string) => {
     try {
@@ -25,7 +26,7 @@ export function ResultsSection({ correctionData }: ResultsSectionProps) {
   };
 
   const handleAccept = async () => {
-    if (!proposedText) return;
+    if (!proposedText || isSaved) return;
 
     try {
       setIsSaving(true);
@@ -45,6 +46,7 @@ export function ResultsSection({ correctionData }: ResultsSectionProps) {
         throw new Error("Failed to save correction");
       }
 
+      setIsSaved(true);
       toast.success("Correction saved successfully");
     } catch (err) {
       console.error("Error saving correction:", err);
@@ -75,13 +77,15 @@ export function ResultsSection({ correctionData }: ResultsSectionProps) {
               <Button 
                 size="sm"
                 onClick={handleAccept}
-                disabled={isSaving}
+                disabled={isSaving || isSaved}
               >
                 {isSaving ? (
                   <div className="flex items-center gap-2">
                     <LoadingSpinner />
                     <span>Saving...</span>
                   </div>
+                ) : isSaved ? (
+                  "Correction saved"
                 ) : (
                   "Accept correction"
                 )}

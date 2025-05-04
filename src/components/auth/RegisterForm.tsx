@@ -39,13 +39,13 @@ export function RegisterForm() {
           type="email"
           autoComplete="email"
           required
-          placeholder="twoj@email.com"
+          placeholder="your@email.com"
           disabled={isLoading}
         />
       </div>
       
       <div className="space-y-2">
-        <Label htmlFor="password">Hasło</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           id="password"
           name="password"
@@ -57,12 +57,12 @@ export function RegisterForm() {
           minLength={8}
         />
         <p className="text-xs text-muted-foreground">
-          Hasło musi zawierać minimum 8 znaków
+          Password must be at least 8 characters long
         </p>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword">Potwierdź hasło</Label>
+        <Label htmlFor="confirmPassword">Confirm password</Label>
         <Input
           id="confirmPassword"
           name="confirmPassword"
@@ -79,7 +79,7 @@ export function RegisterForm() {
         className="w-full"
         disabled={isLoading}
       >
-        {isLoading ? 'Tworzenie konta...' : 'Zarejestruj się'}
+        {isLoading ? 'Creating account...' : 'Sign up'}
       </Button>
     </form>
   )

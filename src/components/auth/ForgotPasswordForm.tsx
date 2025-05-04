@@ -50,7 +50,7 @@ export function ForgotPasswordForm() {
           type="email"
           autoComplete="email"
           required
-          placeholder="twoj@email.com"
+          placeholder="your@email.com"
           disabled={isLoading}
         />
       </div>
@@ -60,7 +60,7 @@ export function ForgotPasswordForm() {
         className="w-full"
         disabled={isLoading}
       >
-        {isLoading ? 'Wysyłanie...' : 'Wyślij link resetujący'}
+        {isLoading ? 'Sending...' : 'Send reset link'}
       </Button>
     </form>
   )

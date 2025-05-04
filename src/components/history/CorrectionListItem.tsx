@@ -29,7 +29,7 @@ export function CorrectionListItem({ correction, onDelete }: CorrectionListItemP
     setIsDeleting(false)
   }
 
-  const formattedDate = new Date(correction.created_at).toLocaleDateString('pl-PL', {
+  const formattedDate = new Date(correction.created_at).toLocaleDateString('en-US', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -45,19 +45,19 @@ export function CorrectionListItem({ correction, onDelete }: CorrectionListItemP
             {formattedDate}
           </div>
           <div className="text-sm font-medium">
-            Styl: {correction.correction_style === 'formal' ? 'Formalny' : 'Naturalny'}
+            Style: {correction.correction_style === 'formal' ? 'Formal' : 'Natural'}
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <div className="text-sm font-medium mb-1">Oryginalny tekst:</div>
+          <div className="text-sm font-medium mb-1">Original text:</div>
           <div className="text-sm text-muted-foreground bg-muted p-3 rounded-md">
             {correction.original_text}
           </div>
         </div>
         <div>
-          <div className="text-sm font-medium mb-1">Poprawiony tekst:</div>
+          <div className="text-sm font-medium mb-1">Corrected text:</div>
           <div className="text-sm bg-muted p-3 rounded-md">
             {correction.approved_text}
           </div>
@@ -68,19 +68,19 @@ export function CorrectionListItem({ correction, onDelete }: CorrectionListItemP
           <AlertDialogTrigger asChild>
             <Button variant="destructive" size="sm" disabled={isDeleting}>
               <Trash2 className="h-4 w-4 mr-2" />
-              {isDeleting ? 'Usuwanie...' : 'Usuń'}
+              {isDeleting ? 'Deleting...' : 'Delete'}
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Czy na pewno chcesz usunąć tę korektę?</AlertDialogTitle>
+              <AlertDialogTitle>Are you sure you want to delete this correction?</AlertDialogTitle>
               <AlertDialogDescription>
-                Ta akcja jest nieodwracalna. Korekta zostanie trwale usunięta z systemu.
+                This action cannot be undone. The correction will be permanently removed from the system.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Anuluj</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDelete}>Usuń</AlertDialogAction>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDelete}>Delete</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

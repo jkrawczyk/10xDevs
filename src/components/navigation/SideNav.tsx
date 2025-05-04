@@ -7,12 +7,12 @@ import { History, Wand2 } from 'lucide-react'
 
 const navigation = [
   {
-    name: 'Generowanie poprawek',
+    name: 'Generate Corrections',
     href: '/',
     icon: Wand2,
   },
   {
-    name: 'Historia',
+    name: 'History',
     href: '/history',
     icon: History,
   },

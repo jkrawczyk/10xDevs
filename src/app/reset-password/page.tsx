@@ -3,8 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ResetPasswordForm } from '@/components/auth/ResetPasswordForm'
 
 export const metadata = {
-  title: 'Reset hasła',
-  description: 'Ustaw nowe hasło do swojego konta',
+  title: 'Reset Password',
+  description: 'Set a new password for your account',
 }
 
 export default function ResetPasswordPage() {
@@ -12,9 +12,9 @@ export default function ResetPasswordPage() {
     <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl">Reset hasła</CardTitle>
+          <CardTitle className="text-2xl">Reset Password</CardTitle>
           <CardDescription>
-            Wprowadź nowe hasło do swojego konta
+            Enter a new password for your account
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -23,7 +23,7 @@ export default function ResetPasswordPage() {
         <CardFooter>
           <div className="text-sm text-muted-foreground">
             <Link href="/login" className="text-primary hover:underline">
-              Wróć do logowania
+              Back to login
             </Link>
           </div>
         </CardFooter>

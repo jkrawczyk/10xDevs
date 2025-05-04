@@ -15,7 +15,7 @@ export async function resetPassword(formData: FormData): Promise<ResetPasswordAc
   const confirmPassword = formData.get('confirmPassword') as string
 
   if (password !== confirmPassword) {
-    return { error: 'Hasła nie są identyczne' }
+    return { error: 'Passwords do not match' }
   }
 
   const { error } = await supabase.auth.updateUser({
@@ -27,5 +27,5 @@ export async function resetPassword(formData: FormData): Promise<ResetPasswordAc
   }
 
   revalidatePath('/', 'layout')
-  redirect('/login?message=Hasło zostało zmienione. Możesz się teraz zalogować.')
+  redirect('/login?message=Password has been changed. You can now log in.')
 } 

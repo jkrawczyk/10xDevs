@@ -3,8 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ForgotPasswordForm } from '@/components/auth/ForgotPasswordForm'
 
 export const metadata = {
-  title: 'Odzyskiwanie hasła',
-  description: 'Zresetuj swoje hasło',
+  title: 'Password Recovery',
+  description: 'Reset your password',
 }
 
 export default function ForgotPasswordPage() {
@@ -12,9 +12,9 @@ export default function ForgotPasswordPage() {
     <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl">Odzyskiwanie hasła</CardTitle>
+          <CardTitle className="text-2xl">Password Recovery</CardTitle>
           <CardDescription>
-            Wprowadź swój adres email, a wyślemy Ci link do zresetowania hasła
+            Enter your email address and we'll send you a password reset link
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -22,9 +22,9 @@ export default function ForgotPasswordPage() {
         </CardContent>
         <CardFooter>
           <div className="text-sm text-muted-foreground">
-            Pamiętasz hasło?{' '}
+            Remember your password?{' '}
             <Link href="/login" className="text-primary hover:underline">
-              Wróć do logowania
+              Back to login
             </Link>
           </div>
         </CardFooter>

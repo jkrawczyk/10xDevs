@@ -15,7 +15,7 @@ export async function register(formData: FormData): Promise<RegisterActionRespon
   const confirmPassword = formData.get('confirmPassword') as string
 
   if (password !== confirmPassword) {
-    return { error: 'Hasła nie są identyczne' }
+    return { error: 'Passwords do not match' }
   }
 
   const data = {
@@ -30,5 +30,5 @@ export async function register(formData: FormData): Promise<RegisterActionRespon
   }
 
   revalidatePath('/', 'layout')
-  redirect('/login?message=Sprawdź swoją skrzynkę email, aby potwierdzić rejestrację')
+  redirect('/login?message=Check your email to confirm registration')
 } 

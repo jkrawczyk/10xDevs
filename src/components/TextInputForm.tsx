@@ -3,40 +3,45 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import type { CorrectionStyle } from "@/types";
 
 interface TextInputFormProps {
-  onSubmit: (text: string, style: CorrectionStyle) => Promise<void>;
+  onSubmit: (text: string) => Promise<void>;
+  onStyleChange: (style: CorrectionStyle) => void;
   isLoading: boolean;
   defaultText: string;
-  defaultStyle: CorrectionStyle;
+  style: CorrectionStyle;
   hasGeneratedBefore: boolean;
 }
 
 export function TextInputForm({ 
   onSubmit, 
+  onStyleChange,
   isLoading, 
   defaultText, 
-  defaultStyle,
+  style,
   hasGeneratedBefore 
 }: TextInputFormProps) {
   const [text, setText] = useState(defaultText);
-  const [style, setStyle] = useState<CorrectionStyle>(defaultStyle);
 
-  // Update local state when props change
+  // Update text when defaultText changes
   useEffect(() => {
     setText(defaultText);
-    setStyle(defaultStyle);
-  }, [defaultText, defaultStyle]);
+  }, [defaultText]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim().length === 0) return;
-    await onSubmit(text, style);
+    await onSubmit(text);
   };
+
+  const styleOptions = [
+    { value: 'formal', label: 'Formal' },
+    { value: 'natural', label: 'Natural' },
+  ];
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -59,23 +64,13 @@ export function TextInputForm({
         </p>
       </div>
 
-      <div className="space-y-2">
-        <Label>Correction style</Label>
-        <RadioGroup
+      <div className="flex justify-center">
+        <SegmentedControl
           value={style}
-          onValueChange={(value: CorrectionStyle) => setStyle(value)}
-          className="flex flex-col space-y-2"
+          onValueChange={(value) => onStyleChange(value as CorrectionStyle)}
+          options={styleOptions}
           disabled={isLoading}
-        >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="formal" id="formal" />
-            <Label htmlFor="formal">Formal</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="natural" id="natural" />
-            <Label htmlFor="natural">Natural</Label>
-          </div>
-        </RadioGroup>
+        />
       </div>
 
       <div className="flex justify-center">

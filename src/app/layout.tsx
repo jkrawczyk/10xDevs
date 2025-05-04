@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
   title: "Text Correction App",
-  description: "Aplikacja do korekty tekstu",
+  description: "Text correction application",
 };
 
 export default async function RootLayout({
@@ -22,20 +22,21 @@ export default async function RootLayout({
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <html lang="pl">
+    <html lang="en">
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
           <header className="border-b">
-            <div className="container flex items-center justify-between h-16">
-              <div className="text-lg font-semibold">
+            <div className="flex items-center h-16">
+              <div className="text-lg font-semibold px-4">
                 Text Correction
               </div>
+              <div className="flex-1" />
               <UserNav user={!!user} />
             </div>
           </header>
           <div className="flex-1 flex">
             <SideNav />
-            <main className="flex-1 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto px-8">
               {children}
             </main>
           </div>

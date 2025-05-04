@@ -21,6 +21,6 @@ export async function forgotPassword(formData: FormData): Promise<ForgotPassword
   }
 
   return {
-    success: 'Link do zresetowania hasła został wysłany na podany adres email'
+    success: 'Password reset link has been sent to your email address'
   }
 } 

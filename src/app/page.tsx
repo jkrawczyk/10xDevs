@@ -5,23 +5,27 @@ import { ResultsSection } from "@/components/ResultsSection";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState } from "react";
 import type { CorrectionViewModel } from "@/types/viewModels";
+import type { CorrectionStyle } from "@/types";
 
 export default function TextInputPage() {
-  const [correctionData, setCorrectionData] = useState<CorrectionViewModel>({
+  const [selectedStyle, setSelectedStyle] = useState<CorrectionStyle>("formal");
+  const [isLoading, setIsLoading] = useState(false);
+  const [correctionData, setCorrectionData] = useState<{
+    originalText: string;
+    proposedText?: string;
+    educationalComment?: string;
+    error?: string;
+  }>({
     originalText: "",
-    correctionStyle: "formal",
-    isLoading: false,
   });
 
-  const handleSubmit = async (originalText: string, correctionStyle: "formal" | "natural") => {
+  const handleStyleChange = (style: CorrectionStyle) => {
+    setSelectedStyle(style);
+  };
+
+  const handleSubmit = async (originalText: string) => {
     try {
-      setCorrectionData((prev) => ({ 
-        ...prev, 
-        originalText,
-        correctionStyle,
-        isLoading: true, 
-        error: undefined 
-      }));
+      setIsLoading(true);
       
       const response = await fetch("/api/corrections/generate", {
         method: "POST",
@@ -30,7 +34,7 @@ export default function TextInputPage() {
         },
         body: JSON.stringify({
           original_text: originalText,
-          correction_style: correctionStyle,
+          correction_style: selectedStyle,
         }),
       });
 
@@ -39,37 +43,41 @@ export default function TextInputPage() {
       }
 
       const data = await response.json();
-      setCorrectionData((prev) => ({
-        ...prev,
+      setCorrectionData({
+        originalText,
         proposedText: data.proposed_text,
         educationalComment: data.educational_comment,
-        isLoading: false,
-      }));
+      });
     } catch (error) {
-      setCorrectionData((prev) => ({
+      setCorrectionData(prev => ({
         ...prev,
         error: error instanceof Error ? error.message : "An unexpected error occurred",
-        isLoading: false,
       }));
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="container py-8 space-y-8">
-      <h1 className="text-3xl font-bold mb-8">Generowanie poprawek</h1>
+    <div className="py-8 space-y-8">
       
       <TextInputForm 
         onSubmit={handleSubmit} 
-        isLoading={correctionData.isLoading}
+        onStyleChange={handleStyleChange}
+        isLoading={isLoading}
         defaultText={correctionData.originalText}
-        defaultStyle={correctionData.correctionStyle}
+        style={selectedStyle}
         hasGeneratedBefore={Boolean(correctionData.proposedText)}
       />
 
       {correctionData.proposedText && (
         <div className="animate-in slide-in-from-bottom duration-500">
           <ResultsSection
-            correctionData={correctionData}
+            correctionData={{
+              ...correctionData,
+              correctionStyle: selectedStyle,
+              isLoading,
+            }}
           />
         </div>
       )}

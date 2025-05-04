@@ -22,12 +22,12 @@ export function HistoryView({ initialCorrections, initialError }: HistoryViewPro
       })
 
       if (!response.ok) {
-        throw new Error('Wystąpił błąd podczas usuwania korekty')
+        throw new Error('An error occurred while deleting the correction')
       }
 
       setCorrections((prev) => prev.filter((correction) => correction.id !== id))
     } catch (err) {
-      setError('Wystąpił błąd podczas usuwania korekty. Spróbuj ponownie później.')
+      setError('An error occurred while deleting the correction. Please try again later.')
     }
   }
 

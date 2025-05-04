@@ -51,13 +51,13 @@ export function LoginForm() {
           type="email"
           autoComplete="email"
           required
-          placeholder="twoj@email.com"
+          placeholder="your@email.com"
           disabled={isLoading}
         />
       </div>
       
       <div className="space-y-2">
-        <Label htmlFor="password">Hasło</Label>
+        <Label htmlFor="password">Password</Label>
         <Input
           id="password"
           name="password"
@@ -75,7 +75,7 @@ export function LoginForm() {
           className="flex-1"
           disabled={isLoading}
         >
-          {isLoading ? 'Logowanie...' : 'Zaloguj się'}
+          {isLoading ? 'Logging in...' : 'Log in'}
         </Button>
         <Button
           type="submit"
@@ -84,7 +84,7 @@ export function LoginForm() {
           disabled={isLoading}
           formAction={handleSignup}
         >
-          Zarejestruj się
+          Sign up
         </Button>
       </div>
     </form>

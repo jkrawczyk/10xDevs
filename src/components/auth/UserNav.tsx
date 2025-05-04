@@ -10,11 +10,11 @@ interface UserNavProps {
 
 export function UserNav({ user }: UserNavProps) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center px-2">
       {user && (
         <form action={logout}>
           <Button variant="outline" size="sm">
-            Wyloguj się
+            Logout
           </Button>
         </form>
       )}

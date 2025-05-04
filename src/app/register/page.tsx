@@ -3,8 +3,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { RegisterForm } from '@/components/auth/RegisterForm'
 
 export const metadata = {
-  title: 'Rejestracja',
-  description: 'Utwórz nowe konto',
+  title: 'Register',
+  description: 'Create a new account',
 }
 
 export default function RegisterPage() {
@@ -12,9 +12,9 @@ export default function RegisterPage() {
     <div className="container flex items-center justify-center min-h-[calc(100vh-4rem)] py-8">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl">Rejestracja</CardTitle>
+          <CardTitle className="text-2xl">Register</CardTitle>
           <CardDescription>
-            Utwórz nowe konto aby korzystać z aplikacji
+            Create a new account to use the application
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -22,9 +22,9 @@ export default function RegisterPage() {
         </CardContent>
         <CardFooter>
           <div className="text-sm text-muted-foreground">
-            Masz już konto?{' '}
+            Already have an account?{' '}
             <Link href="/login" className="text-primary hover:underline">
-              Zaloguj się
+              Log in
             </Link>
           </div>
         </CardFooter>

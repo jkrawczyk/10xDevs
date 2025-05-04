@@ -2,8 +2,8 @@ import { HistoryView } from '@/components/history/HistoryView'
 import { createClient } from '@/lib/supabase/server'
 
 export const metadata = {
-  title: 'Historia korekt',
-  description: 'Przeglądaj historię swoich korekt tekstu',
+  title: 'Correction History',
+  description: 'Browse your text correction history'
 }
 
 export default async function HistoryPage() {
@@ -14,21 +14,19 @@ export default async function HistoryPage() {
     .order('created_at', { ascending: false })
 
   if (error) {
-    // W przypadku błędu, przekażemy pustą tablicę i informację o błędzie
+    // In case of error, we'll pass an empty array and error message
     return (
-      <div className="container py-8">
-        <h1 className="text-3xl font-bold mb-8">Historia korekt</h1>
+      <div className="py-8">
         <HistoryView 
           initialCorrections={[]} 
-          initialError="Wystąpił błąd podczas pobierania korekt. Spróbuj ponownie później."
+          initialError="An error occurred while fetching corrections. Please try again later."
         />
       </div>
     )
   }
 
   return (
-    <div className="container py-8">
-      <h1 className="text-3xl font-bold mb-8">Historia korekt</h1>
+    <div className="py-8">
       <HistoryView initialCorrections={corrections} />
     </div>
   )
