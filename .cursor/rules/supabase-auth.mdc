@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Supabase Auth Integration
+
+Use this guide to introduce authentication (sign-up & sign-in) in Astro applications with server-side rendering (SSR) support
+
+## Before we start
+
+VERY IMPORTANT: Ask me which pages or components should behave differently after introducing authentication. Adjust further steps accordingly.
+
+## Core Requirements
+
+1. Use `@supabase/ssr` package (NOT auth-helpers) through already prepared `src/lib/supabase/client.ts` on client side and `src/lib/supabase/server.ts` on server side and `src/lib/supabase/middleware.ts`
+2. Use ONLY `getAll` and `setAll` for cookie management
+3. NEVER use individual `get`, `set`, or `remove` cookie methods
+4. Implement proper session management with middleware based on JWT (Supabase Auth)
+
+## Installation
+
+```bash
+npm install @supabase/ssr @supabase/supabase-js
+```
+
+## Security Best Practices
+
+- Set proper cookie options (httpOnly, secure, sameSite)
+- Never expose Supabase integration & keys in client-side components
+- Validate all user input server-side
+- Use proper error handling and logging
+
+## Common Pitfalls
+
+1. DO NOT use individual cookie methods (get/set/remove)
+2. DO NOT import from @supabase/auth-helpers-nextjs
+3. DO NOT skip the auth.getUser() call in middleware
+4. DO NOT modify cookie handling logic
+5. Always handle auth state changes properly

@@ -60,11 +60,17 @@ Kryteria akceptacji:
 
 US-005
 Tytuł: Bezpieczne logowanie i rejestracja
-Opis: Nowy użytkownik może zarejestrować konto oraz zalogować się do systemu, co umożliwia bezpieczny dostęp do zapisanej historii korekt oraz ustawień profilu.
+Opis: Nowy użytkownik może zarejestrować konto oraz zalogować się do systemu, co umożliwia bezpieczny dostęp do generowania korekt, zapisanej historii korekt oraz ustawień profilu.
 Kryteria akceptacji:
 - Użytkownik może zarejestrować konto.
 - System umożliwia logowanie użytkownika z weryfikacją danych.
-- Dostęp do historii korekt użytkownika i ustawień profilu jest ograniczony do zalogowanych użytkowników.
+- Podstawowy widok formularza generowania korekty jest widoczny bez logowania, natomiast samo generowanie nie jest możliwe dla niezalogowanych użytkowników
+- Przycisk generowania korekty jest zastąpiony przyciskiem logowania, np. "Sign in to generate correction"
+- Dostęp do możliwości generowania korekt, historii korekt użytkownika i ustawień profilu jest ograniczony do zalogowanych użytkowników.
+- Użytkownik może logować się do systemu poprzez przycisk w prawym górnym rogu lub zastąpiony przycisk generowania korekt
+- Użytkownik może się wylogować z systemu poprzez przycisk w prawym górnym rogu
+- Logowanie i rejestracja odbywa się na dedykowanych stronach
+- Odzyskiwanie hasła powinno być możliwe
 
 ## 6. Metryki sukcesu
 - Liczba żądań ponownego generowania tekstu - główny wskaźnik efektywności systemu.
