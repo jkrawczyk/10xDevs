@@ -55,8 +55,8 @@ export default function TextInputPage() {
   };
 
   return (
-    <main className="container mx-auto px-4 py-8 space-y-8">
-      <h1 className="text-3xl font-bold mb-8">Text Correction</h1>
+    <div className="container py-8 space-y-8">
+      <h1 className="text-3xl font-bold mb-8">Generowanie poprawek</h1>
       
       <TextInputForm 
         onSubmit={handleSubmit} 
@@ -81,6 +81,6 @@ export default function TextInputPage() {
           </AlertDescription>
         </Alert>
       )}
-    </main>
+    </div>
   );
 }
