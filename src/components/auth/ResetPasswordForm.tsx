@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert } from "@/components/ui/alert"
-import { resetPassword } from '@/app/reset-password/actions'
+import { resetPassword } from '@/app/(auth)/reset-password/actions'
 
 export function ResetPasswordForm() {
   const [error, setError] = useState<string | null>(null)

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert } from "@/components/ui/alert"
-import { register } from '@/app/register/actions'
+import { register } from '@/app/(auth)/register/actions'
 
 export function RegisterForm() {
   const [error, setError] = useState<string | null>(null)

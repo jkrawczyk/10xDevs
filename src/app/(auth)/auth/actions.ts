@@ -8,6 +8,9 @@ export async function logout() {
   const supabase = await createClient()
   await supabase.auth.signOut()
   
+  // Revalidate all paths that depend on auth state
   revalidatePath('/', 'layout')
-  redirect('/login')
+  revalidatePath('/history', 'layout')
+  
+  redirect('/')
 } 

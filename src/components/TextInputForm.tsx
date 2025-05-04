@@ -15,6 +15,7 @@ interface TextInputFormProps {
   defaultText: string;
   style: CorrectionStyle;
   hasGeneratedBefore: boolean;
+  isAuthenticated: boolean;
 }
 
 export function TextInputForm({ 
@@ -23,7 +24,8 @@ export function TextInputForm({
   isLoading, 
   defaultText, 
   style,
-  hasGeneratedBefore 
+  hasGeneratedBefore,
+  isAuthenticated
 }: TextInputFormProps) {
   const [text, setText] = useState(defaultText);
 
@@ -75,7 +77,8 @@ export function TextInputForm({
 
       <div className="flex justify-center">
         <Button 
-          type="submit" 
+          type="button"
+          onClick={!isAuthenticated ? () => onSubmit(text) : handleSubmit}
           disabled={isLoading || text.trim().length === 0}
           className="w-full sm:w-auto"
         >
@@ -84,6 +87,8 @@ export function TextInputForm({
               <LoadingSpinner />
               <span>Generating correction...</span>
             </div>
+          ) : !isAuthenticated ? (
+            "Sign in to generate correction"
           ) : hasGeneratedBefore ? (
             "Regenerate correction"
           ) : (

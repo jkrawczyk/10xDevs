@@ -13,10 +13,15 @@ const publicPaths = [
 ]
 
 function isPublicPath(path: string) {
-  return publicPaths.some(publicPath => path.startsWith(publicPath))
+  return publicPaths.some(publicPath => path.startsWith(publicPath)) || path === '/'
 }
 
 export async function updateSession(request: NextRequest) {
+  // Don't handle redirects for API routes
+  if (request.nextUrl.pathname.startsWith('/api')) {
+    return NextResponse.next()
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   })
@@ -52,16 +57,16 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Sprawdź, czy użytkownik próbuje dostać się do chronionej ścieżki
+  // Only redirect to login for protected paths (not home page)
   if (!user && !isPublicPath(request.nextUrl.pathname)) {
-    // Przekieruj do logowania tylko jeśli to nie jest publiczna ścieżka
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
   }
 
-  // Jeśli użytkownik jest zalogowany i próbuje dostać się do stron auth, przekieruj do strony głównej
-  if (user && isPublicPath(request.nextUrl.pathname)) {
+  // Don't redirect away from login page immediately after login
+  // This gives time for the session to be properly established
+  if (user && request.nextUrl.pathname === '/login') {
     const url = request.nextUrl.clone()
     url.pathname = '/'
     return NextResponse.redirect(url)

@@ -6,10 +6,14 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState } from "react";
 import type { CorrectionViewModel } from "@/types/viewModels";
 import type { CorrectionStyle } from "@/types";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/lib/auth/AuthContext";
 
 export default function TextInputPage() {
   const [selectedStyle, setSelectedStyle] = useState<CorrectionStyle>("formal");
   const [isLoading, setIsLoading] = useState(false);
+  const { user, isLoading: isCheckingAuth } = useAuth();
+  const router = useRouter();
   const [correctionData, setCorrectionData] = useState<{
     originalText: string;
     proposedText?: string;
@@ -24,6 +28,11 @@ export default function TextInputPage() {
   };
 
   const handleSubmit = async (originalText: string) => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
     try {
       setIsLoading(true);
       
@@ -60,14 +69,14 @@ export default function TextInputPage() {
 
   return (
     <div className="py-8 space-y-8">
-      
       <TextInputForm 
         onSubmit={handleSubmit} 
         onStyleChange={handleStyleChange}
-        isLoading={isLoading}
+        isLoading={isLoading || isCheckingAuth}
         defaultText={correctionData.originalText}
         style={selectedStyle}
         hasGeneratedBefore={Boolean(correctionData.proposedText)}
+        isAuthenticated={Boolean(user)}
       />
 
       {correctionData.proposedText && (

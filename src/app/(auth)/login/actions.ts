@@ -1,11 +1,11 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
 export type AuthActionResponse = {
   error?: string;
+  success?: boolean;
 }
 
 export async function login(formData: FormData): Promise<AuthActionResponse> {
@@ -24,8 +24,11 @@ export async function login(formData: FormData): Promise<AuthActionResponse> {
     return { error: error.message }
   }
 
+  // Revalidate all paths that depend on auth state
   revalidatePath('/', 'layout')
-  redirect('/')
+  revalidatePath('/history', 'layout')
+  
+  return { success: true }
 }
 
 export async function signup(formData: FormData): Promise<AuthActionResponse> {
@@ -44,6 +47,9 @@ export async function signup(formData: FormData): Promise<AuthActionResponse> {
     return { error: error.message }
   }
 
+  // Revalidate all paths that depend on auth state
   revalidatePath('/', 'layout')
-  redirect('/')
+  revalidatePath('/history', 'layout')
+  
+  return { success: true }
 }

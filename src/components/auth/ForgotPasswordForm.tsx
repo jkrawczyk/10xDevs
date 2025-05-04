@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert } from "@/components/ui/alert"
-import { forgotPassword } from '@/app/forgot-password/actions'
+import { forgotPassword } from '@/app/(auth)/forgot-password/actions'
 
 export function ForgotPasswordForm() {
   const [error, setError] = useState<string | null>(null)
