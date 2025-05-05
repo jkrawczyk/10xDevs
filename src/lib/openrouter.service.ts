@@ -147,7 +147,6 @@ export class OpenRouterService {
         }
 
         const jsonResponse = await response.json();
-        console.log('OpenRouter API Response:', JSON.stringify(jsonResponse, null, 2));
         return jsonResponse;
       } catch (error) {
         this._retryCount++;
@@ -165,7 +164,6 @@ export class OpenRouterService {
    * Parses and validates the API response
    */
   private _parseApiResponse(apiResponse: any): ParsedResponse {
-    console.log('Parsing API Response:', JSON.stringify(apiResponse, null, 2));
     
     // OpenRouter API returns response in this format:
     // {

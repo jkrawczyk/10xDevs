@@ -18,6 +18,9 @@ English Text Corrector is a web application that automatically corrects English 
 - **CI/CD & Hosting:**
   - GitHub Actions for CI/CD pipelines
   - DigitalOcean for hosting via Docker
+- **Testing:**
+  - **Unit Tests:** Vitest with React Testing Library
+  - **End-to-End Tests:** Playwright
 
 ## Getting Started Locally
 
