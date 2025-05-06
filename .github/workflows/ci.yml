@@ -51,7 +51,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
       env:
-        NODE_ENV: production
+        NODE_ENV: development
 
     - name: Build Project
       run: npm run build
