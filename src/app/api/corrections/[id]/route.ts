@@ -4,7 +4,7 @@ import { DeleteCorrectionResponseDTO } from '@/types';
 
 export async function DELETE(
   request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     // Get and validate the ID parameter

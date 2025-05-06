@@ -1,19 +1,13 @@
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { LoginForm } from '@/components/auth/LoginForm'
-import { Alert } from "@/components/ui/alert"
 
 export const metadata = {
   title: 'Login',
   description: 'Log in to your account',
 }
 
-interface LoginPageProps {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const message = searchParams?.message?.toString()
+export default async function LoginPage() {
 
   return (
     <main className="flex-1 flex items-center justify-center py-8">
@@ -25,16 +19,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {message && (
-            <Alert className="mb-4">
-              {message}
-            </Alert>
-          )}
           <LoginForm />
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
           <div className="text-sm text-muted-foreground">
-            Don&apos;t have an account yet?{' '}
+            Don&apost have an account yet?{' '}
             <Link href="/register" className="text-primary hover:underline">
               Sign up
             </Link>
