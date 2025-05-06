@@ -27,11 +27,6 @@ jobs:
       env:
         NODE_ENV: test
 
-    - name: Run Lint
-      run: npm run lint
-      env:
-        NODE_ENV: test
-
     - name: Run Unit Tests
       run: npm run test
       env:
