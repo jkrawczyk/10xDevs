@@ -34,7 +34,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
           <div className="text-sm text-muted-foreground">
-            Don't have an account yet?{' '}
+            Don&apos;t have an account yet?{' '}
             <Link href="/register" className="text-primary hover:underline">
               Sign up
             </Link>

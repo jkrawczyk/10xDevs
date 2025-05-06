@@ -10,7 +10,7 @@ export function CorrectionList({ corrections, onDelete }: CorrectionListProps) {
   if (corrections.length === 0) {
     return (
       <div className="text-center py-8 text-muted-foreground">
-        You don't have any corrections yet
+        You don&apos;t have any corrections yet
       </div>
     )
   }

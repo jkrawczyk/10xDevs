@@ -26,7 +26,7 @@ export function HistoryView({ initialCorrections, initialError }: HistoryViewPro
       }
 
       setCorrections((prev) => prev.filter((correction) => correction.id !== id))
-    } catch (err) {
+    } catch {
       setError('An error occurred while deleting the correction. Please try again later.')
     }
   }

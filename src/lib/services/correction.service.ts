@@ -27,8 +27,7 @@ export class CorrectionService {
   static async generateCorrectionProposal(
     originalText: string,
     correctionStyle: GenerateCorrectionProposalCommand['correction_style'],
-    deniedProposedText: string | undefined,
-    userId: string
+    deniedProposedText: string | undefined
   ): Promise<GenerateCorrectionProposalResponseDTO> {
     try {
       const openRouter = this.getOpenRouterService();

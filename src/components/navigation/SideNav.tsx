@@ -8,7 +8,7 @@ import { useAuth } from '@/lib/auth/AuthContext'
 
 export function SideNav() {
   const pathname = usePathname()
-  const { user, isLoading } = useAuth()
+  const { user } = useAuth()
 
   const navigation = [
     {

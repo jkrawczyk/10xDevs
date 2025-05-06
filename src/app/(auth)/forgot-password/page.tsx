@@ -14,7 +14,7 @@ export default function ForgotPasswordPage() {
         <CardHeader>
           <CardTitle className="text-2xl">Password Recovery</CardTitle>
           <CardDescription>
-            Enter your email address and we'll send you a password reset link
+            Enter your email address and we&apos;ll send you a password reset link
           </CardDescription>
         </CardHeader>
         <CardContent>

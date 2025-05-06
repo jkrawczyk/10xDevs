@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { CorrectionStyle, GenerateCorrectionProposalCommand } from '@/types';
+import { GenerateCorrectionProposalCommand } from '@/types';
 import { CorrectionService } from '@/lib/services/correction.service';
-import { DEFAULT_USER_ID, createClient } from '@/lib/supabase/server';
 
 // Validation schema for the request body
 const generateCorrectionSchema = z.object({
@@ -13,9 +12,6 @@ const generateCorrectionSchema = z.object({
 
 export async function POST(request: Request) {
   try {
-    // Initialize Supabase client
-    const supabase = await createClient();
-
     // Parse and validate request body
     const body = await request.json();
     const validationResult = generateCorrectionSchema.safeParse(body);
@@ -33,8 +29,7 @@ export async function POST(request: Request) {
     const correctionProposal = await CorrectionService.generateCorrectionProposal(
       command.original_text,
       command.correction_style,
-      command.denied_proposed_text,
-      DEFAULT_USER_ID
+      command.denied_proposed_text
     );
 
     return NextResponse.json(correctionProposal, { status: 200 });

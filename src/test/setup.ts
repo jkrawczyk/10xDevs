@@ -1,16 +1,6 @@
-import { afterEach, vi, expect } from 'vitest';
+import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
-
-// Extend Vitest's expect
-import type { TestingLibraryMatchers } from '@testing-library/jest-dom/matchers';
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace Vi {
-    interface Assertion extends TestingLibraryMatchers<any, void> {}
-  }
-}
 
 // Mock Next.js routing
 vi.mock('next/navigation', async () => {

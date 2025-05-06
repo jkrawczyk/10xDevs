@@ -4,7 +4,6 @@ import { TextInputForm } from "@/components/TextInputForm";
 import { ResultsSection } from "@/components/ResultsSection";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useState } from "react";
-import type { CorrectionViewModel } from "@/types/viewModels";
 import type { CorrectionStyle } from "@/types";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth/AuthContext";

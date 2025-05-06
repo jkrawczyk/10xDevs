@@ -124,6 +124,7 @@ export class OpenRouterService {
   /**
    * Makes a request to the OpenRouter API with exponential backoff retry logic
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async _makeRequest(payload: RequestPayload): Promise<any> {
     while (this._retryCount < this._maxRetries) {
       try {
@@ -163,6 +164,7 @@ export class OpenRouterService {
   /**
    * Parses and validates the API response
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private _parseApiResponse(apiResponse: any): ParsedResponse {
     
     // OpenRouter API returns response in this format:

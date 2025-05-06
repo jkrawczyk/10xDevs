@@ -28,7 +28,7 @@ export function LoginForm() {
         await refreshAuthState()
         router.push('/')
       }
-    } catch (error) {
+    } catch {
       setError('An unexpected error occurred')
     } finally {
       setIsLoading(false)
