@@ -75,18 +75,22 @@ describe('TextInputPage', () => {
     vi.clearAllMocks();
     
     // Setup default auth mock for logged in user
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useAuth as any).mockReturnValue({
       user: mockUser,
       isLoading: false
     });
 
     // Setup default router mock
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (useRouter as any).mockReturnValue({
       push: vi.fn()
     });
 
     // Reset component mocks
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (TextInputForm as any).mockClear();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (ResultsSection as any).mockClear();
     mockFetch.mockClear();
   });
